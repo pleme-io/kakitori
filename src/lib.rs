@@ -1,5 +1,10 @@
-//! Kakitori (書き取り) — text and buffer operation utilities: line manipulation, range operations, mark management
+//! Kakitori (書き取り) — text and buffer operation utilities.
 //!
-//! Shared library for the blnvim-ng plugin suite.
-//! Built with [`nvim-oxi`](https://github.com/noib3/nvim-oxi) for zero-cost
-//! Neovim API bindings.
+//! High-level helpers for manipulating Neovim buffers: line operations,
+//! range replacements, mark management, and text diffing. Used by
+//! plugin crates like `ayumi`, `fuda`, and `migaku`.
+
+pub mod diff;
+pub mod lines;
+pub mod marks;
+pub mod range;
