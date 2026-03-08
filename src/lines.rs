@@ -20,27 +20,26 @@ pub fn get_line(buf: &Buffer, line: usize) -> tane::Result<String> {
 }
 
 /// Replace a range of lines (0-indexed, exclusive end).
-pub fn set_lines(buf: &Buffer, start: usize, end: usize, replacement: &[&str]) -> tane::Result<()> {
-    buf.set_lines(start..end, true, replacement)?;
+pub fn set_lines(buf: &mut Buffer, start: usize, end: usize, replacement: &[&str]) -> tane::Result<()> {
+    buf.set_lines(start..end, true, replacement.iter().copied())?;
     Ok(())
 }
 
 /// Insert lines after the given line number (0-indexed).
-pub fn insert_after(buf: &Buffer, after: usize, lines: &[&str]) -> tane::Result<()> {
-    buf.set_lines((after + 1)..(after + 1), true, lines)?;
+pub fn insert_after(buf: &mut Buffer, after: usize, lines: &[&str]) -> tane::Result<()> {
+    buf.set_lines((after + 1)..(after + 1), true, lines.iter().copied())?;
     Ok(())
 }
 
 /// Delete a range of lines (0-indexed, exclusive end).
-pub fn delete_lines(buf: &Buffer, start: usize, end: usize) -> tane::Result<()> {
-    let empty: &[&str] = &[];
-    buf.set_lines(start..end, true, empty)?;
+pub fn delete_lines(buf: &mut Buffer, start: usize, end: usize) -> tane::Result<()> {
+    buf.set_lines(start..end, true, std::iter::empty::<&str>())?;
     Ok(())
 }
 
 /// Append lines at the end of the buffer.
-pub fn append(buf: &Buffer, lines: &[&str]) -> tane::Result<()> {
+pub fn append(buf: &mut Buffer, lines: &[&str]) -> tane::Result<()> {
     let count = buf.line_count()? as usize;
-    buf.set_lines(count..count, true, lines)?;
+    buf.set_lines(count..count, true, lines.iter().copied())?;
     Ok(())
 }
