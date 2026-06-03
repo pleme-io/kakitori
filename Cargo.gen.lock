@@ -824,7 +824,7 @@
     }
   },
   "git_nar_sha256": {
-    "tane-0.1.0": "sha256-Va5xgILTX9CDnfIqLGKPpgeoTHGiPjmwpoz3TQUvhrw="
+    "tane-0.1.0": "sha256-ubMjCis9b2Jwdlv093hxJ1n4C38WovAQ2qbxearynQg="
   },
   "flake_metadata": {}
 }
